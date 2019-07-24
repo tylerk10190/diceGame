@@ -11,7 +11,7 @@ let player2 = {
 	health: 100,
 };
 
-// beginMatch()
+beginMatch()
 
 
 function rollDice(num1)
@@ -42,7 +42,9 @@ function beginMatch()
 
 					if(player2.health == 0)
 						{
+							alert("Player One Wins!")
 							break;
+
 						}
 					else
 						{
@@ -77,6 +79,7 @@ function beginMatch()
 				player1.health -= launchAttack(player1)
 					if(player1.health == 0)
 						{
+							alert("Player Two Wins!")
 							break;
 						}
 					else
@@ -93,65 +96,69 @@ function beginMatch()
 		}
 
 		//second players attack
-
-	if(playerOneRoll <= playerTwoRoll)
-		{
-			alert("Player One take your turn!")
-			let playerOneInput = prompt("Player One decide! Press 1 to attack or press 2 to heal yourself!")
-			if(playerOneInput == "1")
-			{
-				player2.health -= launchAttack(player2)
-					if(player2.health <= 0)
-						{
-							break;
-						}
-					else
-						{
-							console.log("Player 2 health is now " + player2.health)
-						}	
-			}
-			else if(playerOneInput === "2")
-			{
-				if(player1.health >= 100)
+	if(player1.health > 0 && player2.health > 0)
+		{	
+			if(playerOneRoll <= playerTwoRoll)
 				{
-					player1.health = 100
-					console.log("You cannot heal wounds you do not have. " + player1.name + "'s health is now " + player1.health)
-				}
-				else {
-					let p1ExtraHealth = selfHeal(player1)
-					console.log("You healed yourself! Player One health is now " + p1ExtraHealth)
-					alert("Player One's turn has ended!")
+					alert("Player One take your turn!")
+					let playerOneInput = prompt("Player One decide! Press 1 to attack or press 2 to heal yourself!")
+					if(playerOneInput == "1")
+					{
+						player2.health -= launchAttack(player2)
+							if(player2.health <= 0)
+								{
+									alert("Player One Wins!")
+									break;
+								}
+							else
+								{
+									console.log("Player 2 health is now " + player2.health)
+								}	
 					}
-			}
-			else
-			{
-				console.log("Please choose one of the options")
-			}
-
-		}
-	else if(playerTwoRoll < playerOneRoll)
-		{
-			alert("Player Two take your turn!")
-			let playerTwoInput = prompt("Player Two decide! Press 1 to attack or press 2 to heal yourself!")
-			if(playerTwoInput == "1")
-			{
-				player1.health -= launchAttack(player1)
-					if(player1.health == 0)
+					else if(playerOneInput === "2")
+					{
+						if(player1.health >= 100)
 						{
-							break;
+							player1.health = 100
+							console.log("You cannot heal wounds you do not have. " + player1.name + "'s health is now " + player1.health)
 						}
+						else {
+							let p1ExtraHealth = selfHeal(player1)
+							console.log("You healed yourself! Player One health is now " + p1ExtraHealth)
+							alert("Player One's turn has ended!")
+							}
+					}
 					else
-						{
-							console.log("Player 1 health is now " + player1.health)
-						}
-			}
-			else if(playerTwoInput == "2")
-			{
-				let p2ExtraHealth = selfHeal(player2)
-				console.log("You healed yourself! Player Two health is now " + p2ExtraHealth)
-				alert("Player Two's turn has ended")
-			}
+					{
+						console.log("Please choose one of the options")
+					}
 
+				}
+			else if(playerTwoRoll < playerOneRoll)
+				{
+					alert("Player Two take your turn!")
+					let playerTwoInput = prompt("Player Two decide! Press 1 to attack or press 2 to heal yourself!")
+					if(playerTwoInput == "1")
+					{
+						player1.health -= launchAttack(player1)
+							if(player1.health == 0)
+								{
+									alert("Player Two Wins!")
+									break;
+								}
+							else
+								{
+									console.log("Player 1 health is now " + player1.health)
+								}
+					}
+					else if(playerTwoInput == "2")
+					{
+						let p2ExtraHealth = selfHeal(player2)
+						console.log("You healed yourself! Player Two health is now " + p2ExtraHealth)
+						alert("Player Two's turn has ended")
+					}
+
+				}
 		}
 	}	
 }
@@ -240,17 +247,17 @@ function attackAccuracy()
 		case 1:
 		spokenWord = "Maybe try opening your eyes next time!!!"	
 		totalScore =  -10
-		console.log(spokenWord + " " + "Accuracy Score " + totalScore + "!?!");
+		console.log(spokenWord + " " + "Accuracy Score " + totalScore);
 		break;
 		case 2:
 		spokenWord = "Smh. Just go home, before you hurt yourself!"
 		totalScore =  -6
-		console.log(spokenWord + " " + "Accuracy Score " + totalScore + "!?!");
+		console.log(spokenWord + " " + "Accuracy Score " + totalScore);
 		break;
 		case 3:
 		spokenWord = "The only thing you can hit is the road, Jack!"
 		totalScore = -2
-		console.log(spokenWord + " " + "Accuracy Score " + totalScore + "?");
+		console.log(spokenWord + " " + "Accuracy Score " + totalScore);
 		break;
 		case 4: 
 		spokenWord = "You only dealt a glancing blow. Try harder next time!"
