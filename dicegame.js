@@ -11,7 +11,7 @@ let player2 = {
 	health: 100,
 };
 
-beginMatch()
+// beginMatch()
 
 
 function rollDice(num1)
@@ -32,13 +32,14 @@ function beginMatch()
 	{
 
 		//first players attack
-		if(playerOneRoll > playerTwoRoll)
+		if(playerOneRoll >= playerTwoRoll)
 		{
 			alert("Player One take your turn!")
 			let playerOneInput = prompt("Player One decide! Press 1 to attack or press 2 to heal yourself!")
 			if(playerOneInput == "1")
 			{
 				player2.health -= launchAttack(player2)
+
 					if(player2.health == 0)
 						{
 							break;
@@ -90,15 +91,10 @@ function beginMatch()
 				alert("Player Two's turn has ended")
 			}
 		}
-		else
-		{
-			alert("You tied. Please roll again!")
-			beginMatch()
-		}
 
 		//second players attack
 
-	if(playerOneRoll < playerTwoRoll)
+	if(playerOneRoll <= playerTwoRoll)
 		{
 			alert("Player One take your turn!")
 			let playerOneInput = prompt("Player One decide! Press 1 to attack or press 2 to heal yourself!")
@@ -140,7 +136,7 @@ function beginMatch()
 			if(playerTwoInput == "1")
 			{
 				player1.health -= launchAttack(player1)
-					if(player1.health = 0)
+					if(player1.health == 0)
 						{
 							break;
 						}
@@ -198,6 +194,10 @@ function launchAttack(defendingPlayer)
 	{
 		console.log("Your attack caused " + finalAttackScore + " damage points! " + "You crushed that puny little worm!")
 	}
+	if(finalAttackScore < 0)
+	{
+		finalAttackScore = 0
+	}
 
 
 	return finalAttackScore;
@@ -207,7 +207,7 @@ function launchAttack(defendingPlayer)
 
 function selfHeal(player)
 {
-	let healScore = rollDice(12);
+	let healScore = rollDice(10);
 	let addHealth = player.health += healScore;
 	if(player.health >= 100)
 	{
