@@ -11,7 +11,7 @@ let player2 = {
 	health: 100,
 };
 
-beginMatch()
+// beginMatch()
 
 
 function rollDice(num1)
